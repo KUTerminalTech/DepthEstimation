@@ -13,21 +13,29 @@ set(Boost_USE_MULTITHREADED ON)
 # Libary package lists
 find_package(OpenCV REQUIRED)
 find_package(Boost 1.70 REQUIRED COMPONENTS program_options)
+find_package(yaml-cpp 0.6.0 REQUIRED)
+
+include_directories(include)
 
 add_executable(${CMAKE_PROJECT_NAME}
     main.cpp
+
+    src/Options.cpp
+    src/Camera.cpp
 )
 
 # libraries' include directories
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
     ${OpenCV_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIR}
+    ${YAML_CPP_INCLUDE_DIR}
 )
 
 # link libraries
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC
     ${OpenCV_LIBS}
     ${Boost_LIBRARIES}
+    ${YAML_CPP_LIBRARIES}
 )
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
