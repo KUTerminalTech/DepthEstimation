@@ -3,14 +3,14 @@
 
 #include <string>
 
-#include <yaml-cpp/yaml.h>
 #include <opencv2/core/mat.hpp>
 
 class Camera {
 private:
-    // YAML::Node camera_config;
-    int video_width;
-    int video_height;
+    YAML::Node camera_config;
+
+    uint32_t video_width;
+    uint32_t video_height;
 
     std::string camera_name;
 
@@ -23,7 +23,13 @@ public:
     Camera(std::string config_path);
     ~Camera();
 
+    void init();
 
+    const uint32_t videoWidth() const;
+    const uint32_t videoHeight() const;
+    const cv::Mat cameraMatrix() const;
+    const cv::Mat cameraCoefficient() const;
+    const cv::Mat rectificationMatrix() const;
 
 };
 
